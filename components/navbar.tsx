@@ -43,7 +43,7 @@ export default function Navbar() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                    <Image src={'/icon/logo.svg'} width={157} height={44} alt='Logo' />
+                    <Image src={'/icon/Logo.svg'} width={157} height={44} alt='Logo' />
                 </motion.div>
             </Link>
             <motion.div

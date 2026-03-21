@@ -37,9 +37,9 @@ export default function FeaturedSection() {
 
       {/* Cards Grid */}
       <motion.div
-        className='mt-6 grid grid-cols-4 gap-5 max-md:flex max-md:flex-col max-md:w-[330px] max-md:mx-auto'
+        className='mt-6 grid grid-cols-4 gap-5 max-md:flex max-md:flex-col max-md:w-full'
         variants={containerVariants}
-        initial="hidden"
+        initial="visible"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
       >
