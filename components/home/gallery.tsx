@@ -26,11 +26,8 @@ const imageVariants = {
     opacity: 1,
     y: 0,             // o‘z joyiga tushadi
     transition: {
-      type: 'spring',   // tabiiyroq, yumshoq harakat
-      stiffness: 100,
-      damping: 15,
-      duration: 0.7,
-    },
+      duration: 0.7
+    }
   },
 }
 
@@ -38,8 +35,8 @@ export default function Gallery() {
   return (
     <div className="max-w-[1280px] mx-auto mt-16 mb-16 px-4 sm:px-6 lg:px-8">
       <div>
-        <h1 className="text-[36px] font-bold">Gallery</h1>
-        <p className="font-medium text-[#6A7282] mt-2">
+        <h1 className="text-[36px] font-bold max-md:text-[26px]">Gallery</h1>
+        <p className="font-medium text-[#6A7282] mt-2 text-[14px] max-md:text-[13px]">
           Discover moments from every journey
         </p>
       </div>
@@ -52,9 +49,9 @@ export default function Gallery() {
       >
         {/* Birinchi ustun */}
         <motion.div className="flex flex-col gap-5" variants={imageVariants}>
-          <div className="flex gap-5">
+          <div className="flex gap-5 max-md:flex-col">
             <motion.div
-              className="w-[256px] h-[256px] rounded-[20px] overflow-hidden"
+              className="w-[256px] h-[256px] rounded-[20px] overflow-hidden max-md:w-full max-md:h-[220px]"
               variants={imageVariants}
             >
               <Image
@@ -66,7 +63,7 @@ export default function Gallery() {
               />
             </motion.div>
             <motion.div
-              className="w-[256px] h-[256px] rounded-[20px] overflow-hidden"
+              className="w-[256px] h-[256px] rounded-[20px] overflow-hidden max-md:w-full max-md:h-[220px]"
               variants={imageVariants}
             >
               <Image
@@ -80,7 +77,7 @@ export default function Gallery() {
           </div>
 
           <motion.div
-            className="w-[532px] h-[400px] rounded-[20px] overflow-hidden"
+            className="w-[532px] h-[400px] rounded-[20px] overflow-hidden max-md:w-full max-md:h-[260px]"
             variants={imageVariants}
           >
             <Image
@@ -96,7 +93,7 @@ export default function Gallery() {
         {/* Ikkinchi ustun */}
         <motion.div className="flex flex-col gap-5" variants={imageVariants}>
           <motion.div
-            className="w-[305px] h-[328px] rounded-[20px] overflow-hidden"
+            className="w-[305px] h-[328px] rounded-[20px] overflow-hidden max-md:w-full max-md:h-[240px]"
             variants={imageVariants}
           >
             <Image
@@ -109,7 +106,7 @@ export default function Gallery() {
           </motion.div>
 
           <motion.div
-            className="w-[305px] h-[328px] rounded-[20px] overflow-hidden"
+            className="w-[305px] h-[328px] rounded-[20px] overflow-hidden max-md:w-full max-md:h-[240px]"
             variants={imageVariants}
           >
             <Image
@@ -125,7 +122,7 @@ export default function Gallery() {
         {/* Uchinchi ustun */}
         <motion.div className="flex flex-col gap-5" variants={imageVariants}>
           <motion.div
-            className="w-[403px] h-[222px] rounded-[20px] overflow-hidden"
+            className="w-[403px] h-[222px] rounded-[20px] overflow-hidden max-md:w-full max-md:h-[200px]"
             variants={imageVariants}
           >
             <Image
@@ -137,9 +134,9 @@ export default function Gallery() {
             />
           </motion.div>
 
-          <div className="flex gap-5">
+          <div className="flex gap-5 max-md:flex-col">
             <motion.div
-              className="w-[191.5px] h-[191.5px] rounded-[20px] overflow-hidden"
+              className="w-[191.5px] h-[191.5px] rounded-[20px] overflow-hidden max-md:w-full max-md:h-[190px]"
               variants={imageVariants}
             >
               <Image
@@ -151,7 +148,7 @@ export default function Gallery() {
               />
             </motion.div>
             <motion.div
-              className="w-[191.5px] h-[191.5px] rounded-[20px] overflow-hidden"
+              className="w-[191.5px] h-[191.5px] rounded-[20px] overflow-hidden max-md:w-full max-md:h-[190px]"
               variants={imageVariants}
             >
               <Image
@@ -165,7 +162,7 @@ export default function Gallery() {
           </div>
 
           <motion.div
-            className="w-[403px] h-[222px] rounded-[20px] overflow-hidden"
+            className="w-[403px] h-[222px] rounded-[20px] overflow-hidden max-md:w-full max-md:h-[200px]"
             variants={imageVariants}
           >
             <Image

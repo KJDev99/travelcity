@@ -3,18 +3,7 @@
 import React from 'react'
 import FeatureCard from '../ui/featurecard'
 import { motion } from 'framer-motion'
-
-// Sample data array
-const tours = [
-  { title: "Samarkand Cultural Heritage Tour", price: "200,000 UZS", image: "/sec1.png" },
-  { title: "Bukhara Historical Tour", price: "180,000 UZS", image: "/sec2.png" },
-  { title: "Khiva Ancient City Tour", price: "220,000 UZS", image: "/sec3.png" },
-  { title: "Fergana Valley Tour", price: "250,000 UZS", image: "/sec4.png" },
-  { title: "Tashkent City Highlights", price: "150,000 UZS", image: "/sec5.png" },
-  { title: "Nukus Art & Culture Tour", price: "230,000 UZS", image: "/sec6.png" },
-  { title: "Shakhrisabz Historical Tour", price: "200,000 UZS", image: "/sec7.png" },
-  { title: "Termez Silk Road Tour", price: "210,000 UZS", image: "/sec8.png" },
-];
+import { cities } from '@/lib/cities'
 
 export default function FeaturedSection() {
 
@@ -25,40 +14,43 @@ export default function FeaturedSection() {
 
   const cardVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 }
+    }
   }
 
   return (
-    <div className='max-w-7xl m-auto mt-[64px]'>
+    <div className='max-w-7xl m-auto mt-[64px] max-md:px-4'>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
+        transition={{ duration: 0.8 }}
       >
-        <h1 className='text-[36px] font-bold'>Featured tours</h1>
-        <p className='font-medium text-[#6A7282] mt-2'>
+        <h1 className='text-[36px] font-bold max-md:text-[26px]'>Featured tours</h1>
+        <p className='font-medium text-[#6A7282] mt-2 text-[14px] max-md:text-[13px]'>
           Explore the Uzbekistan`s most iconic cities and hidden gems
         </p>
       </motion.div>
 
       {/* Cards Grid */}
       <motion.div
-        className='mt-6 grid grid-cols-4 gap-5'
+        className='mt-6 grid grid-cols-4 gap-5 max-md:flex max-md:flex-col max-md:w-[330px] max-md:mx-auto'
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
       >
-        {tours.map((tour, index) => (
-          <motion.div key={index} variants={cardVariants}>
-            <FeatureCard
-              title={tour.title}
-              price={tour.price}
-              image={tour.image}
-            />
-          </motion.div>
-        ))}
+        {Array.from({ length: 8 }).map((_, index) => {
+          const city = cities[index % cities.length]
+          return (
+            <motion.div key={city.slug + index} variants={cardVariants}>
+              <FeatureCard city={city} />
+            </motion.div>
+          )
+        })}
       </motion.div>
     </div>
   )

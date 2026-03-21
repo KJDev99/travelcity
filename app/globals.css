@@ -1,1 +1,61 @@
 @import "tailwindcss";
+
+.travel-daypicker {
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+.travel-daypicker .rdp-caption {
+  background: #ea004a;
+  color: white;
+  padding: 12px 14px;
+}
+
+.travel-daypicker .rdp-nav_button {
+  color: white;
+}
+
+.travel-daypicker .rdp-head_cell {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 700;
+}
+
+.travel-daypicker .rdp-day {
+  border-radius: 9999px;
+}
+
+.travel-daypicker .rdp-day_selected {
+  background: #ea004a !important;
+  color: #fff !important;
+}
+
+.travel-daypicker .rdp-day_today:not(.rdp-day_selected) {
+  color: #ea004a !important;
+  font-weight: 700;
+}
+
+@media (max-width: 767px) {
+  .travel-daypicker {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .travel-daypicker .rdp-month {
+    width: 100%;
+  }
+}
+
+/* Phone layout: make city/feature cards full width (1 per row) */
+@media (max-width: 767px) {
+  .travel-city-card {
+    width: 100% !important;
+  }
+
+  .travel-feature-card {
+    width: 100% !important;
+    max-width: none !important;
+  }
+}
+

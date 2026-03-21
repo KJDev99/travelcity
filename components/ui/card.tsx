@@ -3,8 +3,9 @@ import React from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
+import type { City } from "@/lib/cities"
 
-export default function Card() {
+export default function Card({ city }: { city: City }) {
 
   const cardVariants = {
     hidden: { opacity: 0, y: 40 },
@@ -15,26 +16,21 @@ export default function Card() {
     }
   }
 
-  const city = {
-    name: "Bukhara",
-    tours: "20+ tours available",
-    image: "/sec1.png",
-    size: "305"
-  }
+  const toursText = `${city.name}: tours available`
 
   return (
-    <Link href={'/city-detail'}>
+    <Link href={`/cities/${city.slug}`}>
       <div className="">
         <motion.div
           variants={cardVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          className="relative overflow-hidden rounded-[24px] cursor-pointer group"
-          style={{ width: `${city.size}px`, height: "220px" }}
+          className="travel-city-card relative overflow-hidden rounded-[24px] cursor-pointer group"
+          style={{ width: `305px`, height: "220px" }}
         >
           <Image
-            src={city.image}
+            src={city.galleryImages[1] || city.galleryImages[0]}
             alt={city.name}
             fill
             className="object-cover"
@@ -46,7 +42,7 @@ export default function Card() {
             </h1>
 
             <p className="text-white text-center font-medium text-[14px] leading-[20px]">
-              {city.tours}
+              {toursText}
             </p>
           </div>
 

@@ -2,6 +2,7 @@
 import React from 'react'
 import { motion } from "framer-motion"
 import FeatureCard from '../ui/featurecard'
+import { cities } from '@/lib/cities'
 
 export default function Recomedtion() {
 
@@ -25,12 +26,13 @@ export default function Recomedtion() {
   }
 
   return (
-    <motion.div
+  <div className='max-md:px-4 max-w-7xl m-auto'>
+      <motion.div
       variants={container}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="mt-8 mb-8 max-w-7xl mx-auto px-4"
+      className="mt-8 mb-8 max-md:mt-4 max-md:mb-4"
     >
 
       <div>
@@ -52,12 +54,14 @@ export default function Recomedtion() {
         xl:grid-cols-4
         gap-5
       ">
-        <motion.div variants={item}><FeatureCard /></motion.div>
-        <motion.div variants={item}><FeatureCard /></motion.div>
-        <motion.div variants={item}><FeatureCard /></motion.div>
-        <motion.div variants={item}><FeatureCard /></motion.div>
+        {cities.slice(0, 4).map((city) => (
+          <motion.div key={city.slug} variants={item}>
+            <FeatureCard city={city} />
+          </motion.div>
+        ))}
       </div>
 
     </motion.div>
+  </div>
   )
 }

@@ -27,7 +27,7 @@ export default function TourDetail() {
 
   const [mainImage, setMainImage] = useState(images[0])
 
-  const [date, setDate] = useState(null)
+  const [date, setDate] = useState<Date | null>(null)
   const [dateOpen, setDateOpen] = useState(false)
 
   const [guestOpen, setGuestOpen] = useState(false)
@@ -271,7 +271,7 @@ export default function TourDetail() {
 
                     <DatePicker
                       selected={date}
-                      onChange={(d) => setDate(d)}
+                      onChange={(d: Date | null) => setDate(d)}
                       inline
                     />
 

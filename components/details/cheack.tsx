@@ -1,65 +1,54 @@
 import Image from 'next/image'
 import React from 'react'
+import type { City } from '@/lib/cities'
 
-export default function Cheack() {
+export default function Cheack({ city }: { city: City }) {
     return (
-        <div>
-            <div className='max-w-7xl m-auto mb-6 mt-10'>
-                <div className='w-[767px] bg-[#E5E7EB] h-[2px]'></div>
+        <div className="w-full min-w-0">
+            <div className='max-w-7xl m-auto w-full min-w-0 mb-6 mt-10'>
+                <div className='w-full max-w-[767px] bg-[#E5E7EB] h-[2px]'></div>
             </div>
-            <div className=' max-w-7xl m-auto flex gap-[86px]  '>
+            <div className=' max-w-7xl m-auto w-full min-w-0 flex gap-[86px] max-md:flex-col max-md:gap-6  '>
 
                 <div>
                     <h1 className='font-bold text-[18px] leading-7 tracking-[0%]'>Includes</h1>
                 </div>
                 <div className='flex flex-col gap-3 '>
-                    <span className='flex gap-2'>
-                        <Image src={'/icon/Check.svg'} width={24} height={24} alt='?' />
-                        <p className='font-medium text-[16px] leading-6 tracking-[0%]'> Professional English-speaking tour guide</p>
-                    </span>
-                    <span className='flex gap-2'>
-                        <Image src={'/icon/Check.svg'} width={24} height={24} alt='?' />
-                        <p className='font-medium text-[16px] leading-6 tracking-[0%]'> Comfortable private transport (AC car/minivan)</p>
-                    </span>
-                    <span className='flex gap-2'>
-                        <Image src={'/icon/Check.svg'} width={24} height={24} alt='?' />
-                        <p className='font-medium text-[16px] leading-6 tracking-[0%]'> Hotel pick-up & drop-off</p>
-                    </span>
-                    <span className='flex gap-2'>
-                        <Image src={'/icon/Check.svg'} width={24} height={24} alt='?' />
-                        <p className='font-medium text-[16px] leading-6 tracking-[0%]'> Entrance fees to major landmarks (Registan, Gur-Emir, Shah-i Zinda, Bibi-Khanum)</p>
-                    </span>
-                    <span className='flex gap-2'>
-                        <Image src={'/icon/x.svg'} width={24} height={24} alt='?' />
-                        <p className='font-medium text-[16px] leading-6 tracking-[0%]'> Meals & drinks (lunch/dinner)</p>
-                    </span>
-                    <span className='flex gap-2'>
-                        <Image src={'/icon/x.svg'} width={24} height={24} alt='?' />
-                        <p className='font-medium text-[16px] leading-6 tracking-[0%]'> Personal expenses (souvenirs, snacks, etc.)</p>
-                    </span>
+                    {city.includes.map((item, idx) => (
+                      <span key={idx} className='flex gap-2'>
+                        <Image
+                          src={item.kind === 'check' ? '/icon/Check.svg' : '/icon/x.svg'}
+                          width={24}
+                          height={24}
+                          alt='?'
+                        />
+                        <p className='font-medium text-[16px] leading-6 tracking-[0%]'>{item.text}</p>
+                      </span>
+                    ))}
                 </div>
             </div>
             <div className='max-w-7xl m-auto mb-6 mt-10'>
-                <div className='w-[767px] bg-[#E5E7EB] h-[2px]'></div>
+                <div className='w-full max-w-[767px] bg-[#E5E7EB] h-[2px]'></div>
             </div>
             <div>
-                <div className=' max-w-7xl m-auto flex gap-[86px]  '>
+                <div className=' max-w-7xl m-auto w-full min-w-0 flex gap-[86px] max-md:flex-col max-md:gap-6  '>
 
                     <div>
                         <h1 className='font-bold text-[18px] leading-7 tracking-[0%]'>Highlights</h1>
                     </div>
                     <div>
                         <ul className='list-disc flex flex-col gap-3'>
-                            <li className='font-medium text-[16px] leading-6 tracking-normal'>The iconic Timurid architectural ensemble and heart of ancient Samarkand</li>
-                            <li className='font-medium text-[16px] leading-6 tracking-normal'>Resting place of Amir Temur (Tamerlane) and the Timurid dynasty</li>
-                            <li className='font-medium text-[16px] leading-6 tracking-normal'>A breathtaking avenue of blue-tiled mausoleums</li>
-                            <li className='font-medium text-[16px] leading-6 tracking-normal'>One of the grandest mosques in Central Asia</li>
+                            {city.highlights.map((h, idx) => (
+                              <li key={idx} className='font-medium text-[16px] leading-6 tracking-normal'>
+                                {h}
+                              </li>
+                            ))}
                         </ul>
                     </div>
                 </div>
             </div>
              <div className='max-w-7xl m-auto mb-6 mt-10'>
-                <div className='w-[767px] bg-[#E5E7EB] h-[2px]'></div>
+                <div className='w-full max-w-[767px] bg-[#E5E7EB] h-[2px]'></div>
             </div>
         </div>
     )
