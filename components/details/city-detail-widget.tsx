@@ -13,25 +13,13 @@ import {
   FaGlobe
 } from "react-icons/fa"
 import { FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi"
+import Link from "next/link"
+import { Images } from "lucide-react"
 
 function toYyyyMmDd(date: Date) {
   return date.toISOString().slice(0, 10)
 }
 
-// Panel height must always be exactly 628px on desktop.
-// Accordion areas have fixed heights so total never shifts:
-//   Header (price)           : ~72px
-//   Guests button            : 56px
-//   Guests panel (fixed)     : 220px  (hidden = 0, reserved space via CSS)
-//   Date button              : 56px
-//   Date panel (fixed)       : 220px
-//   Lang button              : 56px
-//   Lang panel (fixed)       : 116px
-//   Submit button + padding  : 68px
-// Strategy: only ONE panel open at a time. Each panel has a fixed pixel
-// height with overflow-y-auto so content scrolls inside it.
-// Total with ONE open = 72 + 56 + 220 + 56 + 56 + 56 + 68 = 584px → fits in 628px ✓
-// The card itself is h-[628px] on lg screens with flex-col layout.
 
 export default function CityDetailWidget({ city }: { city: City }) {
   const images = city.galleryImages
@@ -121,8 +109,8 @@ export default function CityDetailWidget({ city }: { city: City }) {
           </motion.div>
 
           {/* Thumbnails */}
-          <div className="flex gap-3 mt-4 flex-none overflow-x-auto overflow-y-hidden pb-1 [-webkit-overflow-scrolling:touch] min-w-0 max-w-full">
-            {images.map((img, i) => (
+          <div className="grid grid-cols-5 max-md:flex gap-3 mt-4 flex-none overflow-x-auto overflow-y-hidden pb-1 [-webkit-overflow-scrolling:touch] min-w-0 max-w-full">
+            {images.slice(0, 5).map((img, i) => (
               <button
                 key={`${img}-${i}`}
                 type="button"
@@ -133,16 +121,32 @@ export default function CityDetailWidget({ city }: { city: City }) {
                 ].join(" ")}
                 aria-label={`Thumbnail ${i + 1}`}
               >
-                <div className="relative w-[110px] h-[74px]">
+                <div className="relative md:w-[100%] md:h-[120px] w-[110px] h-[85px]">
                   <Image src={img} alt="" fill className="object-cover" />
+
+                  {i === 4 && (
+                    <div className="absolute inset-0 flex items-center justify-center gap-1"
+                      style={{ background: "#0000008F" }}>
+                      <Images className="text-white" />
+                      <span style={{
+                        color: "#F9FAFB",
+                        fontWeight: 600,
+                        fontSize: "18px",
+                        lineHeight: "28px",
+                        letterSpacing: "0%"
+                      }}>
+                        500+
+                      </span>
+                    </div>
+                  )}
                 </div>
               </button>
             ))}
           </div>
         </div>
 
-     {/* RIGHT: Booking controls */}
-     <div
+        {/* RIGHT: Booking controls */}
+        <div
           className="min-w-0 rounded-2xl p-5 shadow-sm w-full flex flex-col"
           style={{ border: "1px solid #F0F0F0", maxHeight: "628px", overflow: "hidden" }}
         >
@@ -185,9 +189,9 @@ export default function CityDetailWidget({ city }: { city: City }) {
                   <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
                     {(
                       [
-                        { key: "adult",  title: "Adult",  value: adult,  age: "Age 12 – 99",        onMinus: () => setAdult((v)  => Math.max(0, v - 1)), onPlus: () => setAdult((v)  => v + 1) },
-                        { key: "child",  title: "Child",  value: child,  age: "Age 4 – 11",         onMinus: () => setChild((v)  => Math.max(0, v - 1)), onPlus: () => setChild((v)  => v + 1) },
-                        { key: "infant", title: "Infant", value: infant, age: "Age 3 and younger",  onMinus: () => setInfant((v) => Math.max(0, v - 1)), onPlus: () => setInfant((v) => v + 1) },
+                        { key: "adult", title: "Adult", value: adult, age: "Age 12 – 99", onMinus: () => setAdult((v) => Math.max(0, v - 1)), onPlus: () => setAdult((v) => v + 1) },
+                        { key: "child", title: "Child", value: child, age: "Age 4 – 11", onMinus: () => setChild((v) => Math.max(0, v - 1)), onPlus: () => setChild((v) => v + 1) },
+                        { key: "infant", title: "Infant", value: infant, age: "Age 3 and younger", onMinus: () => setInfant((v) => Math.max(0, v - 1)), onPlus: () => setInfant((v) => v + 1) },
                       ] as const
                     ).map((row, idx, arr) => (
                       <div key={row.key} className={["flex justify-between items-center px-4 py-3", idx < arr.length - 1 ? "border-b border-gray-100" : ""].join(" ")}>
@@ -313,7 +317,7 @@ export default function CityDetailWidget({ city }: { city: City }) {
           <div className="flex-1" />
 
           {/* Submit */}
-          <div className="flex-none pt-3">
+          <Link href="/check" className="flex-none pt-3">
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -322,9 +326,9 @@ export default function CityDetailWidget({ city }: { city: City }) {
             >
               Check availability
             </motion.button>
-          </div>
+          </Link>
         </div>
-    
+
       </div>
 
       {/* Fullscreen gallery */}
